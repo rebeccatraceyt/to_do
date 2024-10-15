@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>Archived Tasks</h2>
+
+    {% if archived_tasks %}
+        <div class="task-board">
+            {% for task in archived_tasks %}
+                <div class="task-box" data-task-id="{{ task.id }}">
+                    <h3>{{ task.title }}</h3>
+                    <p>{{ task.description }}</p>
+                    <p>Due Date: {{ task.due_date }}</p>
+                    <p>Category: {{ task.category }}</p>
+                    <p>Status: {{ task.status }}</p>
+
+                    <!-- Unarchive Button -->
+                    <label>
+                        <input type="checkbox" class="unarchive-checkbox" data-task-id="{{ task.id }}" {% if task.archive %}checked{% endif %}>
+                        Archived
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No archived tasks found.</p>
+    {% endif %}
+<script src="{% static 'js/archive.js' %}"></script>
+{% endblock %}
