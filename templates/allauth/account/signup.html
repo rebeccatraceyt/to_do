@@ -4,12 +4,13 @@
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
-{% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+{% block title %}Sign Up{% endblock %}
+{% block page_title %}Sign Up{% endblock %}
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+{% block content %}
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
   {% csrf_token %}
   {{ form.as_p }}
   {% if redirect_field_value %}

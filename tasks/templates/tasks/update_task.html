@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Update Task{% endblock %}
+{% block page_title %}Update Task{% endblock %}
 
 {% block content %}
-  <h2>Update Task</h2>
   <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}

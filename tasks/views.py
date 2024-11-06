@@ -42,9 +42,10 @@ def delete_task(request, pk):
 def task_board(request):
     tasks = Task.objects.filter(user=request.user, archive=False)
     todo_tasks = tasks.filter(status='todo')
-    in_progress_tasks = tasks.filter(status='in-progress')
+    in_progress_tasks = tasks.filter(status='in_progress')
     complete_tasks = tasks.filter(status='complete')
     return render(request, 'tasks/task_board.html', {
+        'tasks': tasks,
         'todo_tasks': todo_tasks,
         'in_progress_tasks': in_progress_tasks,
         'complete_tasks': complete_tasks,
@@ -84,6 +85,7 @@ def update_task_archive(request, task_id):
             return JsonResponse({'success': False, 'error': 'Task not found'})
     return JsonResponse({'success': False, 'error': 'Invalid request'})
 
+@login_required
 def archived_tasks(request):
     # Filter tasks that are archived and belong to the current user
     archived_tasks = Task.objects.filter(archive=True, user=request.user)

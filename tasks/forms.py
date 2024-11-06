@@ -7,5 +7,6 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ['title', 'category', 'due_date']
         widgets = {
-            'due_date': forms.widgets.DateInput(attrs={'type': 'date'})
+            'title': forms.TextInput(attrs={'placeholder': 'Title'}),
+            'due_date': forms.widgets.DateInput(attrs={'type': 'date'}),
         }
